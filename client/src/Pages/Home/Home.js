@@ -1,9 +1,9 @@
 import React from 'react'
-import Hero from '../Components/Hero/Hero'
+import Hero from '../../Components/Hero/Hero'
 import "./Home.css"
-import PageBreaker from '../Components/PageBreaker/PageBreaker'
-import Card from '../Components/Card/Card';
-import About from '../Components/About/About';
+import PageBreaker from '../../Components/PageBreaker/PageBreaker'
+import Card from '../../Components/Card/Card';
+import About from '../../Components/About/About';
 
 function Home() {
     const cardData = [
