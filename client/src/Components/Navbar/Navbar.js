@@ -1,8 +1,26 @@
 import React from 'react'
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useState, useEffect} from 'react'
+import {Link , useLocation} from 'react-router-dom'
 import "./Navbar.css"
 function Navbar({isLoggedIn}) {
+    const { pathname, hash, key } = useLocation();
+
+  useEffect(() => {
+    // if not a hash link, scroll to top
+    if (hash === '') {
+      window.scrollTo(0, 0);
+    }
+    // else scroll to id
+    else {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView();
+        }
+      }, 0);
+    }
+  }, [pathname, hash, key]); // do this on route change
     const [showMenu, setShowMenu] = useState(false);
     return (
         <>
@@ -11,8 +29,8 @@ function Navbar({isLoggedIn}) {
                     className='navbarLogo'>2ndBooks</Link>
                 <div className="navbarPC navbarLinks">
                     <Link to={'/'}>Home</Link>
-                    <Link to={'/'}>Search</Link>
-                    <Link to={'/'}>About Us</Link>
+                    <Link to={'/search'}>Search</Link>
+                    <Link to={'/#about'}>About Us</Link>
                 </div>
                 <div className='navbarActions'> {
                     isLoggedIn === true && (
