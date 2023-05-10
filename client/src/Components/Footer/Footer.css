@@ -1,3 +1,28 @@
 .footerContainer{
-    background-color: red;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background-color: var(--secondary-color);
+}
+.footerContainer div{
+    margin: 1em;
+}
+.footerLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.footerLinks{
+    font-size: .9rem;
+}
+.footerGetInTouch span{
+    margin:.25em;
+}
+.footerGetInTouch{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
