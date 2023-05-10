@@ -1,7 +1,7 @@
 import React from 'react'
 import "./SearchBar.css"
 
-function SearchBar() {
+function SearchBar({filterShow}) {
   return (
     <div className='searchBarContainer'>
         <div className="searchBarInputsContainer">
@@ -9,7 +9,7 @@ function SearchBar() {
             <input type="text" name="subjectName" id="subjectName" placeholder='Subject' className='searchBarInputs'/>
         </div>
         <div className="searchBarButtonsContainer">
-            <button className='searchBarButtons'>
+            <button className='searchBarButtons' onClick={filterShow}>
                 Filter
             </button>
             <button className='searchBarButtons'>

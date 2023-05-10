@@ -33,7 +33,9 @@
     object-position: top;
     grid-area: cardImage;
   }
-  
+  .cardContent :is(.cardCourse,.cardSem,.cardTitle,.cardPrice,.cardBuy){
+    margin: .25em;
+  }
   .cardContent {
     display: grid;
     background-color: var(--secondary-color);
