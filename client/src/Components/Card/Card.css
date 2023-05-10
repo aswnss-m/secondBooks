@@ -1,76 +1,84 @@
-.card {
+.cardContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cardCourseCode {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    border-radius: 0.25em;
+    padding: 0.25em;
+    font-weight: bold;
+  }
+  
+  .card {
     height: 20em;
     width: 12em;
-    /* background-color: var(--secondary-color); */
     display: grid;
-    grid-template-areas: "cardImage"
-                        "cardContent";
-    grid-template-rows: 60% 40%;
-    border-radius: .5em ;
-    overflow: hidden;
-}
-
-.cardContent{
-    display: grid;
-    background-color: var(--secondary-color);
     grid-template-areas:
-    "cardSem cardCourse"
-    "cardTitle cardTitle"
-    "cardPrice cardBuy"
-    "cardCart cardCart";
-    /* gap: 1em; */
-    
-}
-.cardImage{
+      "cardImage"
+      "cardContent";
+    grid-template-rows: 60% 40%;
+    border-radius: 0.5em;
+    overflow: hidden;
+  }
+  
+  .cardImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
     grid-area: cardImage;
-}
-.cardContent :is(.cardSem,.cardBuy,.cardCourse,.cardPrice,.cardBuy,.cardTitle){
-    margin: .25em;
-}
-.cardSem{
+  }
+  
+  .cardContent {
+    display: grid;
+    background-color: var(--secondary-color);
+    grid-template-areas:
+      "cardSem cardCourse"
+      "cardTitle cardTitle"
+      "cardPrice cardBuy"
+      "cardCart cardCart";
+  }
+  
+  .cardSem {
     grid-area: cardSem;
     font-weight: bold;
-    
-}
-.cardCourse{
+  }
+  
+  .cardCourse {
     grid-area: cardCourse;
     text-align: right;
     font-weight: bold;
-}
-.cardTitle{
+  }
+  
+  .cardTitle {
     grid-area: cardTitle;
-}
-.cardPrice{
-    grid-area:cardPrice;
+  }
+  
+  .cardPrice {
+    grid-area: cardPrice;
     font-weight: bold;
-}
-.cardBuy{
+  }
+  
+  .cardBuy {
     grid-area: cardBuy;
     border: none;
     background-color: var(--black-color);
-    color:var(--primary-color);
-    border-radius: .5em;
+    color: var(--primary-color);
+    border-radius: 0.5em;
     font-weight: bold;
-}
-.cardCart{
+  }
+  
+  .cardCart {
     grid-area: cardCart;
     background-color: var(--black-color);
     color: var(--primary-color);
     border: none;
-    padding: .5em;
+    padding: 0.5em;
     font-weight: bold;
-}
-.cardCourseCode{
-    position:relative;
-    right: -55%;
-    top: 12%;
-    background-color: var(--black-color);
-    color: var(--primary-color);
-    border-radius: .25em;
-    padding: .25em;
-    font-weight: bold;
-}
+  }
+  
