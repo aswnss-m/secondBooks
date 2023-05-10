@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+:root{
+  --primary-color : #fefefe;
+  --secondary-color : #78CCC5;
+  --black-color: #010303;
+}
+html{
+  width: 100%;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+html :where(h1,h2,h3,h4,h5,h6,a,p){
+  color: var(--black-color);
+}
+
+body{
+  box-sizing: border-box;
+  min-height: 100%; 
+
+}
+.text-white{
+  color: var(--primary-color);
+}
+.text-black{
+  color: var(--secondary-color);
+}
+.text-bold{
+  font-weight: bold;
+}
