@@ -1,0 +1,12 @@
+.pageBreaker{
+    width: 95vw;
+    display: flex;
+    margin: 1em auto;
+    align-items: center;
+    gap: .5em;
+}
+.pageBreaker span{
+    flex-grow: 1;
+    height: .25em;
+    background-color: var(--secondary-color);
+}

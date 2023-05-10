@@ -1,0 +1,31 @@
+.aboutContainer{
+    width: 100%;
+    min-height:50vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 1em;
+}
+.aboutText{
+    color: var(--secondary-color);
+    text-align: center;
+    line-height: 25pt;
+    opacity: .5;
+}
+.aboutTextMid{
+    font-size: 3rem;
+    z-index: 1;
+    color: var(--black-color);
+    opacity: 1;
+}
+.aboutRight{
+    width: 50vw;
+    text-align: justify;
+}
+@media screen and (max-width:700px){
+    .aboutRight{
+        width: 90vw;
+    }
+}
