@@ -1,21 +1,21 @@
-.heroContainer {
+.searchheroContainer {
     display: grid;
     place-items: center;
     position: relative;
     width: 100%;
     height: 20vh;
   }
-  .heroContent{
+  .searchheroContent{
     text-align: center;
     position: relative;
     color: var(--primary-color);
     z-index: 1;
   }
-  .heroContent h3{
+  .searchheroContent h3{
     font-size: 2rem;
     color: var(--primary-color);
   }
-  .heroContainer::before {
+  .searchheroContainer::before {
     content: "";
     position: absolute;
     top: 0;
@@ -25,7 +25,7 @@
     background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Black linear gradient from bottom to top */
 }
 
-.heroContainer::after {
+.searchheroContainer::after {
     content: "";
     position: absolute;
     top: 0;

@@ -3,8 +3,8 @@ import "./SearchHero.css"
 
 function SearchHero() {
   return (
-    <div className='heroContainer'>
-      <div className="heroContent">
+    <div className='searchheroContainer'>
+      <div className="searchheroContent">
           <h3>SEARCH</h3>
       </div>
     </div>
