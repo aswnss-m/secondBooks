@@ -1,0 +1,7 @@
+.loginPageContainer{
+    width: 100%;
+    min-height: 80vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--secondary-color);
+}

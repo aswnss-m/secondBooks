@@ -1,0 +1,45 @@
+.circle{
+    width: min(10em,50vw);
+    height: min(10em,50vw);
+    border-radius: 100%;
+    place-self: center;
+    background-color: var(--black-color);
+}
+.form{
+display: flex;
+flex-direction: column;
+gap: .5em;
+}
+.form p{
+    text-align: center;
+}
+.loginContainer{
+    width: 100%;
+    /* background-color: red; */
+    height: max-content ;
+    max-width: 400px;
+}
+.formGroup input{
+    width: 100%;
+    padding: 1em;
+    /* text-align: center; */
+    border: none;
+}
+.formGroup input[type=submit],input[type=reset]{
+    flex: 1;
+    font-weight: bold;
+    background-color: var(--primary-color);
+}
+.formGroup input[type=submit]{
+    background-color: var(--black-color);
+    color: var(--primary-color);
+}
+.formButtonGroup{
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+    flex-direction: column;
+}
+.formGroup label{
+    display: none;
+}
