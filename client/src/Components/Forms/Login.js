@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Form.css"
-function Login() {
+function Login({isRegister}) {
   return (
     <div className='loginContainer'>
       <form action="/" method="post" className='form'>
@@ -19,7 +19,7 @@ function Login() {
             <input type="reset" value="Clear" />
         </div>
         <p>Forgot Password? <Link to={'/login'}>click here</Link></p>
-        <p>Dont have an account? <Link to={'/login'}>create an account</Link></p>
+        <p>Dont have an account? <Link to={'/login'} onClick={isRegister}>create an account</Link></p>
       </form>
     </div>
   )
