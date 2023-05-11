@@ -14,17 +14,15 @@
 
 }
 .filterGroups{
-    padding: 1em;
     background-color: var(--black-color);
-    width: 100%;
-    
+    width: inherit;
 
 }
 .filterHeading{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 .5em;
+    margin: 1em .5em;
 }
 .filterInput{
     width: 90%;
@@ -53,3 +51,20 @@
     max-width: 90vw;
     justify-content: center;
 }
+@media screen and (max-width: 700px) {
+    .searchAndFilterContainer {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      align-items: center;
+      gap: 1em;
+    }
+  
+    .searchAndFilterContainer .filterContainer {
+      width: 100%;
+    }
+  
+    .searchAndFilterContainer .searchResultsContainer {
+      width: 100%;
+    }
+  }
