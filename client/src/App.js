@@ -15,13 +15,14 @@ function App() {
        <Route path={"/"} element={<Home />} />
        <Route path={"/search"} element={<Search />} />
        <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} />} />
-       <Route path={'/profile'} element = {<Profile />} />
-       {/* {
-         isLoggedIn ?? (
+       {
+         isLoggedIn===true && (
            <>
+           <Route path={'/profile'} element = {<Profile />} />
           </>
         )
-       } */}
+       }
+      <Route path={"/*"} element={<Home />} />
      </Routes>
      <Footer />
     </div>
