@@ -3,15 +3,67 @@ import { Link } from 'react-router-dom'
 import "./Form.css"
 import { useState } from 'react'
 function Register({isLogin}) {
-    const [isVerify,setIsVerify] = useState(false)
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: '',
+        mobile: '',
+        otp: '',
+      });
+      
+      const [error, setError] = useState('');
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setError('');
+      
+        const { name, email, username, password, confirmPassword, mobile, otp } = formData;
+      
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+          setError('Password and Confirm Password do not match.');
+          return;
+        }
+      
+        try {
+          const response = await fetch('http://localhost:5000/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              username,
+              password,
+              mobile,
+              otp,
+            }),
+          });
+      
+          if (response.ok) {
+            // Registration successful, handle the response accordingly
+            // e.g., show a success message or redirect to login page
+          } else {
+            // Registration failed, handle the error response
+            const errorData = await response.json();
+            setError(errorData.message);
+          }
+        } catch (error) {
+          setError('An error occurred. Please try again.');
+          console.error(error);
+        }
+      };
+      
+    // const [isVerify,setIsVerify] = useState(false)
   return (
     <div className='loginContainer'>
-      <form action="/" method="post" className='form'>
-        {/* <span className=" circle"></span>  */}
+      <form action="/" method="post" className='form' onSubmit={handleSubmit}>
         <span className='text-bold' style={{textAlign:'center'}}>Register</span>
         <div className="formGroup">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" placeholder='Confirm Password'/>
+            <input type="text" name="name" id="name" placeholder='Name'/>
         </div>
         <div className="formGroup">
             <label htmlFor="email">email</label>

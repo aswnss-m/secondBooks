@@ -53,7 +53,7 @@ function Navbar({isLoggedIn}) {
                         <Link to={'/'}
                             className='navbarPC navbarLogin text-white'>Logout</Link>
                     ) : (
-                        <Link to={'/'}
+                        <Link to={'/login'}
                             className='navbarPC navbarLogin text-white'>Login / Signup</Link>
                     )
                 } </div>
@@ -85,7 +85,7 @@ function Navbar({isLoggedIn}) {
                     isLoggedIn ? (
                         <Link to={'/'}>Logout</Link>
                     ) : (
-                        <Link to={'/'}
+                        <Link to={'/login'}
                             >Login / Signup</Link>
                     )
                 }

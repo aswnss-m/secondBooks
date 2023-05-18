@@ -1,23 +1,37 @@
-import React from 'react'
-import "./SearchBar.css"
+import React from 'react';
+import "./SearchBar.css";
 
-function SearchBar({filterShow}) {
+function SearchBar({ filterShow, handleBookName, handleBookSubject,handleSubmit }) {
   return (
     <div className='searchBarContainer'>
-        <div className="searchBarInputsContainer">
-            <input type="text" name="bookName" id="bookName" placeholder='Name of Book'className='searchBarInputs'/>
-            <input type="text" name="subjectName" id="subjectName" placeholder='Subject' className='searchBarInputs'/>
-        </div>
-        <div className="searchBarButtonsContainer">
-            <button className='searchBarButtons' onClick={filterShow}>
-                Filter
-            </button>
-            <button className='searchBarButtons'>
-                Search
-            </button>
-        </div>
+      <div className="searchBarInputsContainer">
+        <input
+          type="text"
+          name="bookName"
+          id="bookName"
+          placeholder='Name of Book'
+          className='searchBarInputs'
+          onChange={handleBookName}
+        />
+        <input
+          type="text"
+          name="subjectName"
+          id="subjectName"
+          placeholder='Subject'
+          className='searchBarInputs'
+          onChange={handleBookSubject}
+        />
+      </div>
+      <div className="searchBarButtonsContainer">
+        <button className='searchBarButtons' onClick={filterShow}>
+          Filter
+        </button>
+        <button className='searchBarButtons' onClick={handleSubmit}>
+          Search
+        </button>
+      </div>
     </div>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;
