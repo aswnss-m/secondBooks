@@ -25,7 +25,7 @@ const booksRouter = require("./routers/books");
 app.use('/',booksRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerUser);
-app.use('/profile',userRouter);
+// app.use('/profile',userRouter);
 
 app.listen(port,()=>{
     console.log(`Server is running at ${port}`);

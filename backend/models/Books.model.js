@@ -7,6 +7,18 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    semester :{
+        type:String,
+        required:true
+    },
+    Subject :{
+        type:String,
+        required:true
+    },
+    Course :{
+        type:String,
+        required:true
+    },
     author: {
         type: String,
         required: true
