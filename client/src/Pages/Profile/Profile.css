@@ -38,6 +38,15 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.greenButton{
+    background-color: var(--secondary-color);
+    border: none;
+    padding:0.5em;
+    font-weight: bold;
+    border-radius: .5em;
+    width: 100%;
+    margin: .25em 0;
+}
 @media screen and (max-width:600px) {
     .profileHeader{
         flex-direction: column;

@@ -6,6 +6,7 @@ import Search from "./Pages/Search/Search";
 import LoginPage from "./Pages/LoginRegister/LoginPage";
 import { Route,Routes } from "react-router-dom";
 import Profile from "./Pages/Profile/Profile";
+import AddBook from "./Pages/AddBook/AddBook";
 function App() {
   const [isLoggedIn,setIsLoggedIn] = useState(true)
   return (
@@ -19,6 +20,7 @@ function App() {
          isLoggedIn===true && (
            <>
            <Route path={'/profile'} element = {<Profile />} />
+           <Route path={'/addBook'} element = {<AddBook />} />
           </>
         )
        }

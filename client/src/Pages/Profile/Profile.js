@@ -1,6 +1,7 @@
 import React from 'react'
 import PageBreaker from "../../Components/PageBreaker/PageBreaker"
 import "./Profile.css"
+import {Link} from 'react-router-dom'
 import Card from "../../Components/Card/Card" 
 function Profile() {
   const cardData = [
@@ -61,9 +62,26 @@ function Profile() {
         <div className="profileDetails">
             <p className='boldText'>"Profile Name"</p>
             <p>"Email"</p>
+            <Link to={'/AddBook'}><button className='greenButton'>Sell Book</button></Link>
         </div>
       </div>
       
+      <PageBreaker title={'Books You are selling'}/>
+      <div className="profileCards">
+      {cardData.map((card, index) => (
+          <Card
+            key={index}
+            image={card.image}
+            title={card.title}
+            price={card.price}
+            coursecode={card.coursecode}
+            semester={card.semester}
+            course={card.course}
+            smallButton='Delete'
+            largeButton='Update'
+          />
+        ))}
+      </div>
       <PageBreaker title={'Suggested Books'}/>
       <div className="profileCards">
       {cardData.map((card, index) => (
@@ -75,6 +93,7 @@ function Profile() {
             coursecode={card.coursecode}
             semester={card.semester}
             course={card.course}
+           
           />
         ))}
       </div>
