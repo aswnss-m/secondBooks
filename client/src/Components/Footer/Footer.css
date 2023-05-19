@@ -5,6 +5,7 @@
     align-content: flex-start;
     flex-wrap: wrap;
     background-color: var(--secondary-color);
+    margin-top: 1em;
 }
 .footerContainer div{
     margin: 1em;
