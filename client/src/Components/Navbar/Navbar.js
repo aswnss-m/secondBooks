@@ -76,14 +76,14 @@ function Navbar({isLoggedIn}) {
                 }
                     {
                     isLoggedIn === true && (
-                        <Link to={'/'}>
+                        <Link to={'/profile'}>
                             <span className='material-symbols-outlined'>person</span>
                         </Link>
                     )
                 }
                     {
                     isLoggedIn ? (
-                        <Link to={'/'}>Logout</Link>
+                        <Link to={'/home'}>Logout</Link>
                     ) : (
                         <Link to={'/login'}
                             >Login / Signup</Link>

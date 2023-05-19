@@ -16,7 +16,7 @@
   
   .card {
     height: 20em;
-    width: 12em;
+    width: 11.75em;
     display: grid;
     grid-template-areas:
       "cardImage"
