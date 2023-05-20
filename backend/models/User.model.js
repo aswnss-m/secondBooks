@@ -16,13 +16,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    location: String,
     phoneNumber: String,
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    books: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Book'
+    }]
 });
+
 
 const User = mongoose.model('User', userSchema);
 

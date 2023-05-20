@@ -3,6 +3,7 @@
     display: flex;
     padding: 1em 2em;
     justify-content: center;
+    background-color: var(--secondary-color);
 }
 .addBookContainer .form{
     display: flex;
