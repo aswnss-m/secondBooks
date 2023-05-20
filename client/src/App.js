@@ -9,13 +9,16 @@ import Profile from "./Pages/Profile/Profile";
 import AddBook from "./Pages/AddBook/AddBook";
 function App() {
   const [isLoggedIn,setIsLoggedIn] = useState(true)
+  const loggingOut = () => {
+    console.log("Logging out");
+  }
   return (
     <div className="App">
-     <Navbar isLoggedIn={isLoggedIn}/>
+     <Navbar isLoggedIn={isLoggedIn} handleLogout={loggingOut}/>
      <Routes>
        <Route path={"/"} element={<Home />} />
        <Route path={"/search"} element={<Search />} />
-       <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} />} />
+       <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} handleLogin={setIsLoggedIn}/>} />
        {
          isLoggedIn===true && (
            <>

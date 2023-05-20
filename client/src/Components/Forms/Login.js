@@ -1,10 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Form.css"
-function Login({isRegister}) {
+function Login({isRegister,handleLogin}) {
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    handleLogin(true)
+  }
   return (
     <div className='loginContainer'>
-      <form action="/" method="post" className='form'>
+      <form action="/" method="post" className='form' onSubmit={handleSubmit}>
         <span className=" circle"></span> 
         <div className="formGroup">
             <label htmlFor="username">Username</label>
