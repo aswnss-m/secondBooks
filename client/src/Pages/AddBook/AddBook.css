@@ -1,0 +1,17 @@
+.addBookContainer{
+    width: 100%;
+    display: flex;
+    padding: 1em 2em;
+    justify-content: center;
+}
+.addBookContainer .form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+}
+.form textarea{
+    width:100%;
+    min-height: 5rem;
+    padding: 1em;
+}
