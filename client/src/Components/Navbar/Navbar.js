@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import {Link , useLocation} from 'react-router-dom'
 import "./Navbar.css"
-function Navbar({isLoggedIn}) {
+function Navbar({isLoggedIn, handleLogout}) {
     const { pathname, hash, key } = useLocation();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function Navbar({isLoggedIn}) {
                 }
                     {
                     isLoggedIn === true && (
-                        <Link to={'/'}
+                        <Link to={'/profile'}
                             className='navbarPC navbarLogin text-white'>
                             <span className='material-symbols-outlined'>person</span>
                         </Link>
@@ -50,7 +50,7 @@ function Navbar({isLoggedIn}) {
                 }
                     {
                     isLoggedIn ? (
-                        <Link to={'/'}
+                        <Link to={'/home'} onClick={handleLogout}
                             className='navbarPC navbarLogin text-white'>Logout</Link>
                     ) : (
                         <Link to={'/login'}
