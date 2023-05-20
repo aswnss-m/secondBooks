@@ -60,8 +60,8 @@ router.get('/search', async (req, res) => {
 });
 
 // Add Book
-router.route('/').post(upload.single('cover'), (req, res) => {
-  const { title, semester, subject, course, author, description, price, condition, seller } = req.body;
+router.route('/add').post(upload.single('cover'), (req, res) => {
+  const { title, semester, subject, course, author, description, price,seller}= req.body;
 
   const newBook = new Book({
     title,
