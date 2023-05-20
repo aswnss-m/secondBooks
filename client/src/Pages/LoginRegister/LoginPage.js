@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect } from 'react'
 import Login from '../../Components/Forms/Login'
 import Register from '../../Components/Forms/Register'
 import './Loginpage.css'
@@ -10,7 +10,7 @@ function LoginPage({isLoggedIn,handleLogin}) {
     if(isLoggedIn){
       navigate('/profile')
     }
-  },[])
+  })
     const [isNew,setIsNew] = useState(false)
     const handleIsNew = () =>{
         setIsNew(!isNew)
