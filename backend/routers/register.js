@@ -1,17 +1,26 @@
 const router = require('express').Router();
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const User = require('../models/User.model');
 
 router.route('/').post(async (req, res) => {
   try {
-    const { name, email, username, password, phoneNumber } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-
+    const name = req.body.name
+    const email = req.body.email
+    const username = req.body.username
+    const password = req.body.password
+    const phoneNumber = req.body.phoneNumber
+    // Hash the password
+    // const hashedPassword = await bcrypt.hash(password, 10);
+// Check if the username already exists
+const existingUser = await User.findOne({ username });
+if (existingUser) {
+  return res.status(409).json({ message: 'Username already exists' });
+}
     const newUser = new User({
       name,
       email,
       username,
-      password: hashedPassword,
+      password,
       phoneNumber,
     });
 

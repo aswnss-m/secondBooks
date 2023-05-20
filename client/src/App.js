@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Pages/Home/Home";
 import Footer from "./Components/Footer/Footer";
@@ -8,9 +8,14 @@ import { Route,Routes } from "react-router-dom";
 import Profile from "./Pages/Profile/Profile";
 import AddBook from "./Pages/AddBook/AddBook";
 function App() {
-  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(()=>{
+    setIsLoggedIn(localStorage.getItem('token')?true:false);
+  },[localStorage.getItem('token')])
   const loggingOut = () => {
     console.log("Logging out");
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
   }
   return (
     <div className="App">
@@ -18,7 +23,7 @@ function App() {
      <Routes>
        <Route path={"/"} element={<Home />} />
        <Route path={"/search"} element={<Search />} />
-       <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} handleLogin={setIsLoggedIn}/>} />
+       <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} />} />
        {
          isLoggedIn===true && (
            <>
