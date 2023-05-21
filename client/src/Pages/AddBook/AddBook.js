@@ -109,7 +109,7 @@ function SellBook() {
             type="file"
             name="cover"
             id="cover"
-            accept=".jpg, .jpeg, .png"
+            accept=".jpg, .jpeg, .png, .webp"
             onChange={handleChange}
           />
         </div>
