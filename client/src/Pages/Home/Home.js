@@ -1,83 +1,46 @@
-import React from 'react'
-import Hero from '../../Components/Hero/Hero'
-import "./Home.css"
-import PageBreaker from '../../Components/PageBreaker/PageBreaker'
+import React, { useEffect, useState } from 'react';
+import Hero from '../../Components/Hero/Hero';
+import "./Home.css";
+import PageBreaker from '../../Components/PageBreaker/PageBreaker';
 import Card from '../../Components/Card/Card';
 import About from '../../Components/About/About';
+import axios from 'axios';
 
 function Home() {
-    const cardData = [
-        {
-          image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-          title: 'This is my book title',
-          price: '$10',
-          coursecode: 'CSE101.',
-          semester: 'S1',
-          course: 'ECE',
-        },
-        {
-          image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-          title: 'This is my book title 2',
-          price: '$20',
-          coursecode: 'ENG202.',
-          semester: 'S2',
-          course: 'ECE',
-        },
-        {
-          image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-          title: 'This is my book title 2',
-          price: '$20',
-          coursecode: 'ENG202.',
-          semester: 'S2',
-          course: 'ECE',
-        },
-        {
-          image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-          title: 'This is my book title 2',
-          price: '$20',
-          coursecode: 'ENG202.',
-          semester: 'S2',
-          course: 'ECE',
-        },
-        {
-          image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-          title: 'This is my book title 2',
-          price: '$20',
-          coursecode: 'ENG202.',
-          semester: 'S2',
-          course: 'ECE',
-        },
-        {
-          image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-          title: 'This is my book title 2',
-          price: '$20',
-          coursecode: 'ENG202.',
-          semester: 'S2',
-          course: 'ECE',
-        },
-        // Add more card data objects as needed
-      ];
+  const [recentBooks, setRecentBooks] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/books/recent')
+      .then(res => {
+        const books = res.data;
+        setRecentBooks(books);
+      })
+      .catch(err => {
+        console.log("Error: ", err);
+      });
+  }, []);
+
   return (
     <div>
       <Hero />
       <PageBreaker title={'Recent Uploads'} />
       <div className="recentUploads">
-          {cardData.map((card, index) => (
-            <Card
+        {recentBooks.map((book, index) => (
+          <Card
             key={index}
-            image={card.image}
-            title={card.title}
-            price={card.price}
-            coursecode={card.coursecode}
-            semester={card.semester}
-            course={card.course}
-            />
-            ))}
+            image={`http://localhost:5000/books/cover/${book._id}`}
+            title={book.title}
+            price={book.price}
+            coursecode={book.courseCode}
+            semester={book.semester}
+            course={book.course}
+          />
+        ))}
       </div>
       <PageBreaker title={'About'} />
       <About />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

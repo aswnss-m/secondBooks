@@ -12,6 +12,16 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Recent Books
+router.route('/recent').get((req,res)=>{
+  Book.find()
+  .sort({createdAt:-1})
+  .limit(5)
+  .populate('seller','name')
+  .then(books=>res.json(books))
+  .catch(err=>res.status(400).json('Error: '+err));
+})
+
 // Get specific
 router.route('/:id').get((req, res) => {
   Book.findById(req.params.id)
@@ -84,6 +94,22 @@ router.route('/add').post(upload.single('cover'), (req, res) => {
       res.json({ message: 'Book added successfully', bookId: book._id })})
     .catch((err) => res.status(400).json({ message: 'Error: ' + err }));
 });
+// Get Book Cover Image
+router.get('/cover/:id', (req, res) => {
+  const bookId = req.params.id;
+
+  Book.findById(bookId)
+    .then((book) => {
+      if (!book) {
+        return res.status(404).json({ message: 'Book not found' });
+      }
+
+      res.set('Content-Type', book.cover.contentType);
+      res.send(book.cover.data);
+    })
+    .catch((err) => res.status(500).json({ message: 'Error: ' + err }));
+});
+
 
 // Update Book
 router.route('/:id').put(upload.single('cover'), (req, res) => {
