@@ -1,61 +1,25 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Card from '../Card/Card';
 import './SearchResults.css';
-
+import axios from 'axios'
 function SearchResults({ showFilter, handleBtechChange, handleSemChange, handlePriceChange,btechValue,semValue,priceRange,handleSubmit}) {
   const [showPrice, setShowPrice] = useState(false);
   const [showBtech, setShowBtech] = useState(false);
   const [showSem, setShowSem] = useState(false);
-  const cardData = [
-    {
-        image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-        title: 'This is my book title',
-        price: '$10',
-        coursecode: 'CSE101.',
-        semester: 'S1',
-        course: 'ECE'
-    },
-    {
-        image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-        title: 'This is my book title 2',
-        price: '$20',
-        coursecode: 'ENG202.',
-        semester: 'S2',
-        course: 'ECE'
-    },
-    {
-        image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-        title: 'This is my book title 2',
-        price: '$20',
-        coursecode: 'ENG202.',
-        semester: 'S2',
-        course: 'ECE'
-    },
-    {
-        image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-        title: 'This is my book title 2',
-        price: '$20',
-        coursecode: 'ENG202.',
-        semester: 'S2',
-        course: 'ECE'
-    }, {
-        image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-        title: 'This is my book title 2',
-        price: '$20',
-        coursecode: 'ENG202.',
-        semester: 'S2',
-        course: 'ECE'
-    }, {
-        image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
-        title: 'This is my book title 2',
-        price: '$20',
-        coursecode: 'ENG202.',
-        semester: 'S2',
-        course: 'ECE'
-    },
-    // Add more card data objects as needed
-];
+
+const [allBook, setAllBooks] = useState([]);
+
+useEffect(() => {
+  axios.get('http://localhost:5000/books')
+    .then(res => {
+      const books = res.data;
+      setAllBooks(books);
+    })
+    .catch(err => {
+      console.log("Error: ", err);
+    });
+}, []);
 
   return (
     <div className="searchAndFilterContainer">
@@ -174,15 +138,15 @@ function SearchResults({ showFilter, handleBtechChange, handleSemChange, handleP
         </div>
       )}
       <div className="searchResultsContainer">
-        {cardData.map((card, index) => (
+      {allBook.map((book, index) => (
           <Card
             key={index}
-            image={card.image}
-            title={card.title}
-            price={card.price}
-            coursecode={card.coursecode}
-            semester={card.semester}
-            course={card.course}
+            image={`http://localhost:5000/books/cover/${book._id}`}
+            title={book.title}
+            price={book.price}
+            coursecode={book.courseCode}
+            semester={book.semester}
+            course={book.course}
           />
         ))}
       </div>
