@@ -22,7 +22,7 @@ const registerUser = require("./routers/register");
 const userRouter = require("./routers/user");
 const booksRouter = require("./routers/books");
 
-app.use('/',booksRouter);
+app.use('/books',booksRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerUser);
 app.use('/users',userRouter);
