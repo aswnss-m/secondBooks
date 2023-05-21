@@ -21,15 +21,16 @@ function Card({
   handleSmallButton = handleBuy, // Set the default function reference
   handleLargeButton = handleCart, // Set the default function reference
 }) {
+
   return (
     <div className="cardContainer">
       <span className="cardCourseCode">{coursecode.slice(0, 6)}..</span>
       <div className="card">
         <img src={image} alt={title} className="cardImage" />
         <div className="cardContent">
-          <span className="cardSem cardSemester">{semester}</span>
+          <span className="cardSem cardSemester">{semester.slice(0, 3)}</span>
           <span className="cardCourse">{course.slice(0, 3)}..</span>
-          <p className="cardTitle">{title}</p>
+          <p className="cardTitle">{title.slice(0, 20)}...</p>
           <p className="cardPrice">{price}</p>
           <button className="cardBuy" onClick={handleSmallButton}>
             {smallButton}
