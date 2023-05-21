@@ -7,6 +7,12 @@ function Profile() {
   const [userName,setUserName]  = useState('');
   const [email,setEmail] = useState('');
   const [books,setBooks] = useState([]);
+  const handleDelete = () => {
+    console.log("Delete Button Was Clicked")
+  }
+  const handleUpdate = ()=>{
+    console.log("Update Clicked");
+  }
   useEffect(()=>{
     const details = JSON.parse(localStorage.getItem('user'));
     console.log(details);
@@ -90,6 +96,8 @@ function Profile() {
             course={card.course}
             smallButton='Delete'
             largeButton='Update'
+            handleSmallButton={handleDelete}
+            handleLargeButton={handleUpdate}
           />
         ))}
       </div>

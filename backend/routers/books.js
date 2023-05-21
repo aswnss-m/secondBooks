@@ -61,16 +61,16 @@ router.get('/search', async (req, res) => {
 
 // Add Book
 router.route('/add').post(upload.single('cover'), (req, res) => {
-  const { title, semester, subject, course, author, description, price,seller}= req.body;
-
-  const newBook = new Book({
+  const { title, semester, courseCode, course, author, description, price, seller } = req.body;
+  console.log(req.body);
+  const newBook = new Book({  
     title,
     cover: {
       data: req.file.buffer,
       contentType: req.file.mimetype
     },
     semester,
-    subject,
+    courseCode,
     course,
     author,
     description,
@@ -79,8 +79,10 @@ router.route('/add').post(upload.single('cover'), (req, res) => {
   });
 
   newBook.save()
-    .then(() => res.json('Book added successfully'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then((book) => {
+      console.log(book._id);
+      res.json({ message: 'Book added successfully', bookId: book._id })})
+    .catch((err) => res.status(400).json({ message: 'Error: ' + err }));
 });
 
 // Update Book
@@ -89,7 +91,7 @@ router.route('/:id').put(upload.single('cover'), (req, res) => {
     .then(book => {
       book.title = req.body.title;
       book.semester = req.body.semester;
-      book.subject = req.body.subject;
+      book.courseCode = req.body.courseCode;
       book.course = req.body.course;
       book.author = req.body.author;
       book.description = req.body.description;

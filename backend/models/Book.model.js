@@ -6,14 +6,14 @@ const bookSchema = new mongoose.Schema({
     required: true
   },
   cover: {
-    data: Buffer, // Storing the image data as a Buffer
-    contentType: String // Storing the image content type
+    data: Buffer, 
+    contentType: String 
   },
   semester: {
     type: String,
     required: true
   },
-  subject: {
+  courseCode: {
     type: String,
     required: true
   },

@@ -7,8 +7,8 @@ function SellBook() {
     title: '',
     cover: null,
     semester: '',
-    subject: '',
-    course: '',
+    courseCode: '', // Updated field name
+    course:"",
     author: '',
     description: '',
     price: '',
@@ -21,23 +21,25 @@ function SellBook() {
     setError('');
 
     // Validate form data
-    const { title, cover, semester, subject, course, author, description, price } = formData;
-    if (!title || !cover || !semester || !subject || !course || !author || !description || !price) {
+    const { title, cover, semester, courseCode,course, author, description, price } = formData;
+    if (!title || !cover || !semester || !courseCode || !course || !author || !description || !price) {
       setError('Please fill in all fields.');
       return;
     }
 
     try {
       // Prepare form data to be sent
+      const seller = JSON.parse(localStorage.getItem('user'));
       const form = new FormData();
       form.append('title', title);
       form.append('cover', cover);
       form.append('semester', semester);
-      form.append('subject', subject);
-      form.append('course', course);
+      form.append('courseCode', courseCode);
+      form.append('course',course);
       form.append('author', author);
       form.append('description', description);
       form.append('price', price);
+      form.append('seller', seller.id);
       // Make a POST request to the backend
       const response = await axios.post('http://localhost:5000/add', form, {
         headers: {
@@ -50,15 +52,20 @@ function SellBook() {
         title: '',
         cover: null,
         semester: '',
-        subject: '',
-        course: '',
+        courseCode: '',
+        course:'',
         author: '',
         description: '',
         price: '',
+        seller: ''
       });
 
       // Show a success message or redirect to a different page
       console.log(response.data);
+      console.log(response.data.bookId);
+      axios.put('http://localhost:5000/users/addbook', { bookId: response.data.bookId, userId: seller.id }).then((res) => {
+        window.location = '/profile';
+      }).catch((err) => console.log(err));
     } catch (error) {
       setError('An error occurred. Please try again.');
       console.error(error);
@@ -118,23 +125,23 @@ function SellBook() {
           />
         </div>
         <div className="formGroup">
-          <label htmlFor="subject">Subject</label>
+          <label htmlFor="courseCode">Course Code</label>
           <input
             type="text"
-            name="subject"
-            id="subject"
-            placeholder="Subject"
-            value={formData.subject}
+            name="courseCode"
+            id="courseCode"
+            placeholder="Course Code"
+            value={formData.courseCode}
             onChange={handleChange}
           />
         </div>
         <div className="formGroup">
-          <label htmlFor="course">Course</label>
+          <label htmlFor="courseCode">Branch</label>
           <input
             type="text"
             name="course"
             id="course"
-            placeholder="Course"
+            placeholder="Course Code"
             value={formData.course}
             onChange={handleChange}
           />
@@ -173,13 +180,13 @@ function SellBook() {
         </div>
         {error && <p className="error">{error}</p>}
 
-<div className="formGroup formButtonGroup">
-  <input type="submit" value="Sell" />
-  <input type="reset" value="Clear" />
-</div>
-</form>
-</div>
-);
+        <div className="formGroup formButtonGroup">
+          <input type="submit" value="Sell" />
+          <input type="reset" value="Clear" />
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default SellBook;
