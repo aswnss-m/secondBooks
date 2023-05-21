@@ -1,25 +1,31 @@
 const router = require('express').Router();
-const bcrypt = require('bcrypt');
 const User = require('../models/User.model');
 
 router.post('/', async (req, res) => {
-  const { email, password } = req.body;
-
+  const username = req.body.username;
+  const password = req.body.password;
   try {
     // Check if the user exists
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid username' });
     }
 
     // Compare the provided password with the hashed password in the database
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+    if (password !== user.password) {
+      return res.status(401).json({ message: 'Invalid username or password' });
     }
 
     // Password is correct, login successful
-    res.json({ message: 'Login successful', user });
+    const details = {
+      id : user._id,
+      name : user.name,
+      email : user.email,
+      username : user.username,
+      phoneNumber : user.phoneNumber,
+      books : user.books
+    }
+    res.status(200).json({ message: 'Login successful', details });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
