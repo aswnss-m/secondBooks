@@ -41,7 +41,7 @@ function SellBook() {
       form.append('price', price);
       form.append('seller', seller.id);
       // Make a POST request to the backend
-      const response = await axios.post('http://localhost:5000/add', form, {
+      const response = await axios.post('http://localhost:5000/books/add', form, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
