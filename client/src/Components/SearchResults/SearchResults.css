@@ -3,6 +3,7 @@
     width: 100%;
     min-height: 80vh;
     justify-content: center;
+    margin-bottom: 1em;
 }
 .filterContainer{
     background-color: var(--secondary-color);
