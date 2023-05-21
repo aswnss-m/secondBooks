@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import PageBreaker from "../../Components/PageBreaker/PageBreaker"
 import "./Profile.css"
 import {Link} from 'react-router-dom'
 import Card from "../../Components/Card/Card" 
 function Profile() {
+  const [userName,setUserName]  = useState('');
+  const [email,setEmail] = useState('');
+  const [books,setBooks] = useState([]);
+  useEffect(()=>{
+    const details = JSON.parse(localStorage.getItem('user'));
+    console.log(details);
+    setUserName(details.name);
+    setEmail(details.email);
+    setBooks(details.books);
+  },[localStorage.getItem('user')])
   const cardData = [
     {
         image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',
@@ -60,13 +70,14 @@ function Profile() {
             <img src="https://unsplash.it/100" alt="Profile" />
         </div>
         <div className="profileDetails">
-            <p className='boldText'>"Profile Name"</p>
-            <p>"Email"</p>
+            <p className='boldText'>{userName}</p>
+            <p>{email}</p>
             <Link to={'/AddBook'}><button className='greenButton'>Sell Book</button></Link>
         </div>
       </div>
       
       <PageBreaker title={'Books You are selling'}/>
+      {books}
       <div className="profileCards">
       {cardData.map((card, index) => (
           <Card
