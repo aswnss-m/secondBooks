@@ -90,8 +90,8 @@ function Navbar({isLoggedIn, handleLogout}) {
                     )
                 }
                     <Link to={'/'}>Home</Link>
-                    <Link to={'/'}>Search</Link>
-                    <Link to={'/'}>About Us</Link>
+                    <Link to={'/search'}>Search</Link>
+                    <Link to={'/#about'}>About Us</Link>
                 </div>
             )
         } </>

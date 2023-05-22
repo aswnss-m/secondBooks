@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PageBreaker from '../../Components/PageBreaker/PageBreaker';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './Shopping.css';
 
 function Shopping() {
   const [book, setBook] = useState(null);
@@ -22,20 +23,23 @@ function Shopping() {
   }
 
   return (
+     <> <PageBreaker title={'Buy'} />
     <div className='shoppingContainer'>
-      <PageBreaker title={'Buy'} />
-      <div className="shopBookContainer">
-        <img src={`http://localhost:5000/books/cover/${id}`} alt={book.title} />
+      <div className="shopBook">
+          <div className="shopBookCover">
+            <img src={`http://localhost:5000/books/cover/${id}`} alt={book.title} />
+          </div>
+          <div className="shopBookDetails">
+            <h2>{book.title}</h2>
+            <p>Author: {book.author}</p>
+            <p className='text-bold'>Price: {book.price}</p>
+            <p>Description: {book.description}</p>
+            <button className='buyButton'>Buy</button>
+            <button className='cartButton'>Add to Cart</button>
       </div>
-      <div className="shopBookDetails">
-        <h2>{book.title}</h2>
-        <p>Author: {book.author}</p>
-        <p>Price: {book.price}</p>
-        <p>Description: {book.description}</p>
-        <button>Buy</button>
-        <button>Add to Cart</button>
       </div>
     </div>
+    </>
   );
 }
 

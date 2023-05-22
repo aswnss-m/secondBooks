@@ -1,0 +1,55 @@
+.shoppingContainer{
+    display: flex;
+    /* flex-direction: column; */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.shopBook{
+    display: flex;
+    padding: .5em;
+    width: 100%;
+    max-width: 800px;
+    /* background-color: red; */
+    align-items: center;
+    gap: 1em;
+}
+.shopBookCover img{
+    max-width: 60vmin;
+    border: 5px solid var(--secondary-color);
+}
+.shopBookDetails{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    width: 100%;
+}
+.shopBookDetails button{
+    padding: .5em;
+    width: 80%;
+}
+.buyButton{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: .25em;
+    font-weight: bold;
+}
+.cartButton{
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: .25em;
+    font-weight: bold;
+}
+@media screen and (max-width: 700px){
+    .shopBook{
+        flex-direction: column;
+        text-align: center;
+    }
+    .shopBookDetails button{
+        /* width: 80%; */
+        place-self: center;
+    }
+}
