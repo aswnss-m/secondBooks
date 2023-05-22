@@ -16,6 +16,7 @@ function Card({
   coursecode,
   semester,
   course,
+  _id,
   smallButton = 'Buy',
   largeButton = 'Add to Cart',
   handleSmallButton = handleBuy, // Set the default function reference
@@ -23,7 +24,9 @@ function Card({
 }) {
 
   return (
-    <div className="cardContainer">
+    <div className="cardContainer" onClick={()=>{
+      window.location.href = `/books/${_id}`;
+    }}>
       <span className="cardCourseCode">{coursecode.slice(0, 6)}..</span>
       <div className="card">
         <img src={image} alt={title} className="cardImage" />

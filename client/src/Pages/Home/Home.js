@@ -27,13 +27,14 @@ function Home() {
       <div className="recentUploads">
         {recentBooks.map((book, index) => (
           <Card
-            key={index}
-            image={`http://localhost:5000/books/cover/${book._id}`}
-            title={book.title}
-            price={book.price}
-            coursecode={book.courseCode}
-            semester={book.semester}
-            course={book.course}
+          key={index}
+          image={`http://localhost:5000/books/cover/${book._id}`}
+          title={book.title}
+          price={book.price}
+          coursecode={book.courseCode}
+          semester={book.semester}
+          course={book.course}
+          _id={book._id}
           />
         ))}
       </div>

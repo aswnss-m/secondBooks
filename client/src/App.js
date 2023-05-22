@@ -7,6 +7,7 @@ import LoginPage from "./Pages/LoginRegister/LoginPage";
 import { Route,Routes } from "react-router-dom";
 import Profile from "./Pages/Profile/Profile";
 import AddBook from "./Pages/AddBook/AddBook";
+import Shopping from "./Pages/Shopping/Shopping";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(()=>{
@@ -24,6 +25,7 @@ function App() {
        <Route path={"/"} element={<Home />} />
        <Route path={"/search"} element={<Search />} />
        <Route path={"/login"} element={<LoginPage isLoggedIn={isLoggedIn} />} />
+       <Route path={"/books/:id"} element={<Shopping />} />
        {
          isLoggedIn===true && (
            <>

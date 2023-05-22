@@ -3,15 +3,27 @@ import SearchHero from '../../Components/Hero/SearchHero';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import PageBreaker from '../../Components/PageBreaker/PageBreaker';
 import SearchResults from '../../Components/SearchResults/SearchResults';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import axios from 'axios'
 
 function Search() {
     const [btechValue, setBtechValue] = useState('');
     const [semValue, setSemValue] = useState('');
     const [priceRange, setPriceRange] = useState(false);
     const [bookName, setBookName] = useState('');
-    const [bookSubject, setBookSubject] = useState('');
+    const [courseCode, setCourseCode] = useState('');
     const [showFilter, setShowFilter] = useState(false);
+    const [allBook, setAllBooks] = useState([]);
+
+useEffect(() => {
+  axios.get('http://localhost:5000/books')
+    .then(res => {
+      setAllBooks(res.data);
+    })
+    .catch(err => {
+      console.log("Error: ", err);
+    });
+}, []);
 
     const handleBtechChange = (event) => {
         setBtechValue(event.target.value);
@@ -29,8 +41,8 @@ function Search() {
         setBookName(event.target.value);
     };
 
-    const handleBookSubject = (event) => {
-        setBookSubject(event.target.value);
+    const handleCourseCode = (event) => {
+        setCourseCode(event.target.value);
     };
 
     const handleFilterShow = () => {
@@ -40,7 +52,7 @@ function Search() {
     const handleSubmit = () => {
         console.log({
             'name': bookName,
-            "subject": bookSubject,
+            "course Code": courseCode,
             "Semester": semValue,
             "Btech : ": btechValue,
             "price ": priceRange
@@ -51,7 +63,7 @@ function Search() {
             <SearchHero/>
             <SearchBar filterShow={handleFilterShow}
                 handleBookName={handleBookName}
-                handleBookSubject={handleBookSubject}
+                handleCourseCode={handleCourseCode}
                 handleSubmit={handleSubmit}/>
             <PageBreaker title=""/>
             <SearchResults showFilter={showFilter}
@@ -61,7 +73,8 @@ function Search() {
                 btechValue={btechValue}
                 semValue={semValue}
                 priceRange={priceRange}
-                handleSubmit={handleSubmit}/>
+                handleSubmit={handleSubmit}
+                allBook={allBook}/>
         </div>
     );
 }
