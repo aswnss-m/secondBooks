@@ -13,13 +13,12 @@ function Profile() {
   const handleUpdate = ()=>{
     console.log("Update Clicked");
   }
+  const details = JSON.parse(localStorage.getItem('user'));
   useEffect(()=>{
-    const details = JSON.parse(localStorage.getItem('user'));
-    console.log(details);
     setUserName(details.name);
     setEmail(details.email);
     setBooks(details.books);
-  },[localStorage.getItem('user')])
+  },[details])
   const cardData = [
     {
         image: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg',

@@ -18,7 +18,7 @@ function Home() {
       .catch(err => {
         console.log("Error: ", err);
       });
-  }, []);
+  });
 
   return (
     <div>

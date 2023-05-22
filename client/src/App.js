@@ -9,10 +9,10 @@ import Profile from "./Pages/Profile/Profile";
 import AddBook from "./Pages/AddBook/AddBook";
 import Shopping from "./Pages/Shopping/Shopping";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token')?true:false);
   useEffect(()=>{
     setIsLoggedIn(localStorage.getItem('token')?true:false);
-  },[localStorage.getItem('token')])
+  },[isLoggedIn])
   const loggingOut = () => {
     console.log("Logging out");
     localStorage.removeItem('token');

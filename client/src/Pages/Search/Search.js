@@ -23,7 +23,7 @@ useEffect(() => {
     .catch(err => {
       console.log("Error: ", err);
     });
-}, []);
+});
 
     const handleBtechChange = (event) => {
         setBtechValue(event.target.value);
