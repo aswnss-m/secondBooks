@@ -97,7 +97,6 @@ router.route('/add').post(upload.single('cover'), (req, res) => {
 // Get Book Cover Image
 router.get('/cover/:id', (req, res) => {
   const bookId = req.params.id;
-
   Book.findById(bookId)
     .then((book) => {
       if (!book) {
@@ -109,8 +108,13 @@ router.get('/cover/:id', (req, res) => {
     })
     .catch((err) => res.status(500).json({ message: 'Error: ' + err }));
 });
-
-
+// Get Book Details
+router.route("/details/:id").get((req, res) => {
+  Book.findById(req.params.id)
+    .populate("seller", "name")
+    .then((book) => res.json(book))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 // Update Book
 router.route('/:id').put(upload.single('cover'), (req, res) => {
   Book.findById(req.params.id)
