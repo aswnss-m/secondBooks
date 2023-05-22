@@ -8,6 +8,7 @@ import { Route,Routes } from "react-router-dom";
 import Profile from "./Pages/Profile/Profile";
 import AddBook from "./Pages/AddBook/AddBook";
 import Shopping from "./Pages/Shopping/Shopping";
+// import Buy from "./Pages/Buy/Buy";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token')?true:false);
   useEffect(()=>{

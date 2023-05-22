@@ -25,4 +25,19 @@ router.route('/addbook').put(async (req, res) => {
   }
 });
 
+router.route('/:id/sell').get(async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const sellBooks = user.books;
+    res.json(sellBooks);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 module.exports = router;
