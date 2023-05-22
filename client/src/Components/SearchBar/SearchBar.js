@@ -1,7 +1,7 @@
 import React from 'react';
 import "./SearchBar.css";
 
-function SearchBar({ filterShow, handleBookName, handleBookSubject,handleSubmit }) {
+function SearchBar({ filterShow, handleBookName, handleCourseCode,handleSubmit }) {
   return (
     <div className='searchBarContainer'>
       <div className="searchBarInputsContainer">
@@ -17,9 +17,9 @@ function SearchBar({ filterShow, handleBookName, handleBookSubject,handleSubmit 
           type="text"
           name="subjectName"
           id="subjectName"
-          placeholder='Subject'
+          placeholder="Course Code"
           className='searchBarInputs'
-          onChange={handleBookSubject}
+          onChange={handleCourseCode}
         />
       </div>
       <div className="searchBarButtonsContainer">
