@@ -91,7 +91,7 @@ function SearchResults({ showFilter, handleBtechChange, handleSemChange, handleP
           </div>
           <div className="filterGroups">
             <span className="filterHeading">
-              <h5>Price {priceRange && `(${priceRange}+)`}</h5>
+              <h5>Price {priceRange && `(<${priceRange})`}</h5>
               <span
                 className="material-symbols-outlined"
                 style={{ color: 'var(--primary-color)' }}

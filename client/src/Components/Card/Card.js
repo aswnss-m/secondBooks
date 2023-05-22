@@ -33,7 +33,7 @@ function Card({
         <div className="cardContent">
           <span className="cardSem cardSemester">{semester.slice(0, 3)}</span>
           <span className="cardCourse">{course.slice(0, 3)}..</span>
-          <p className="cardTitle">{title.slice(0, 20)}...</p>
+          <p className="cardTitle">{title.slice(0, 15)}...</p>
           <p className="cardPrice">{price}</p>
           <button className="cardBuy" onClick={handleSmallButton}>
             {smallButton}

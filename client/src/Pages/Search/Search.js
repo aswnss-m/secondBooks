@@ -23,7 +23,7 @@ useEffect(() => {
     .catch(err => {
       console.log("Error: ", err);
     });
-});
+},[]);
 
     const handleBtechChange = (event) => {
         setBtechValue(event.target.value);
@@ -50,12 +50,21 @@ useEffect(() => {
         setShowFilter(!showFilter);
     };
     const handleSubmit = () => {
-        console.log({
-            'name': bookName,
-            "course Code": courseCode,
-            "Semester": semValue,
-            "Btech : ": btechValue,
-            "price ": priceRange
+        const filter = {
+            'title': bookName,
+            'courseCode': courseCode,
+            'semester': semValue,
+            'minPrice': 0,
+            'maxPrice': priceRange,
+            'course': btechValue
+        }
+        axios.post('http://localhost:5000/books/search', filter)
+        .then(res => {
+          console.log(res.data);
+          setAllBooks(res.data);
+        })
+        .catch(err => {
+          console.log(err);
         });
     }
     return (

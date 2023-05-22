@@ -31,19 +31,18 @@ router.route('/:id').get((req, res) => {
 });
 
 // Filtered search
-router.get('/search', async (req, res) => {
+router.post('/search', async (req, res) => {
   try {
     const filters = {};
 
     // Extract filter values from query parameters
-    const { title, subject, semester, minPrice, maxPrice, course } = req.query;
-
-    // Build the filters based on the provided parameters
+    const { title, courseCode, semester, minPrice, maxPrice, course } = req.body;
+    console.log(req.body);
     if (title) {
       filters.title = { $regex: title, $options: 'i' }; // Case-insensitive regex matching
     }
-    if (subject) {
-      filters.subject = subject;
+    if (courseCode) {
+      filters.courseCode = courseCode;
     }
     if (semester) {
       filters.semester = semester;
@@ -68,6 +67,7 @@ router.get('/search', async (req, res) => {
     res.status(400).json({ error: 'Error searching for books' });
   }
 });
+
 
 // Add Book
 router.route('/add').post(upload.single('cover'), (req, res) => {
