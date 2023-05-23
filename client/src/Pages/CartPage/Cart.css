@@ -1,0 +1,5 @@
+.cartContainer{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+}

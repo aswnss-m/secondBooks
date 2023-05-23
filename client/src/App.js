@@ -9,6 +9,7 @@ import Profile from "./Pages/Profile/Profile";
 import AddBook from "./Pages/AddBook/AddBook";
 import Shopping from "./Pages/Shopping/Shopping";
 import Buy from "./Pages/Buy/Buy";
+import Cart from "./Pages/CartPage/Cart";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token')?true:false);
   useEffect(()=>{
@@ -17,6 +18,7 @@ function App() {
   const loggingOut = () => {
     console.log("Logging out");
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setIsLoggedIn(false);
   }
   return (
@@ -33,6 +35,7 @@ function App() {
            <Route path={'/profile'} element = {<Profile />} />
            <Route path={'/addBook'} element = {<AddBook />} />
            <Route path={"/buy/:bookId"} element={<Buy />} />
+           <Route path={'/profile/cart'} element={<Cart />} />
           </>
         ):(
           <>

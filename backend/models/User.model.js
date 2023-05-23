@@ -30,7 +30,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Book'
     }],
-    
+    cart :[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Book'
+    }],
     address: {
         type: String,
         default: null

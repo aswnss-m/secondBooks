@@ -34,7 +34,7 @@ function Navbar({isLoggedIn, handleLogout}) {
                 </div>
                 <div className='navbarActions'> {
                     isLoggedIn === true && (
-                        <Link to={'/'}
+                        <Link to={'/profile/cart'}
                             className='navbarPC navbarLogin text-white'>
                             <span className='material-symbols-outlined'>shopping_cart</span>
                         </Link>
