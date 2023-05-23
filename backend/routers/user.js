@@ -58,6 +58,25 @@ router.route('/Additem').put(async (req, res) => {
     res.status(500).json({ message: error });
   }
 });
+router.route("/removeitem").put(async (req,res)=>{
+  const userId = req.body.userId;
+  const bookId = req.body.bookId;
+
+  try{
+    const user = await User.findById(userId);
+    if(!user){
+      return res.status(404).json({message:"User not found"});
+    }
+    user.cart.pull(bookId);
+    const updatedUser = await user.save();
+    const { _id, ...userWithoutId } = updatedUser.toObject(); // Exclude _id field
+    res.status(200).json({ message: 'User updated successfully', user: { id: _id, ...userWithoutId } });
+
+  }catch(error){
+    res.status(500).json({message:error});
+  }
+  
+})
 
 router.route('/:id/sell').get(async (req, res) => {
   try {
