@@ -34,7 +34,9 @@ function Shopping() {
             <p>Author: {book.author}</p>
             <p className='text-bold'>Price: {book.price}</p>
             <p>Description: {book.description}</p>
-            <button className='buyButton'>Buy</button>
+            <button className='buyButton' onClick={()=>{
+              window.location.href=`/buy/${id}`;
+            }}>Buy</button>
             <button className='cartButton'>Add to Cart</button>
       </div>
       </div>
