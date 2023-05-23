@@ -17,7 +17,7 @@ function SearchBar({ filterShow, handleBookName, handleCourseCode,handleSubmit }
           type="text"
           name="subjectName"
           id="subjectName"
-          placeholder="Course Code"
+          placeholder="Subject Code"
           className='searchBarInputs'
           onChange={handleCourseCode}
         />
