@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
     books: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Book'
-    }]
+    }],
+    address: String
 });
 
 
