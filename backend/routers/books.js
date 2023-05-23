@@ -3,6 +3,7 @@ const Book = require('../models/Book.model');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
+const User = require('../models/User.model');
 
 // Get All
 router.route('/').get((req, res) => {
@@ -141,10 +142,20 @@ router.route('/:id').put(upload.single('cover'), (req, res) => {
 });
 
 // Delete Book
-router.route('/:id').delete((req, res) => {
-  Book.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Book deleted successfully'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.route('/:id').delete(async (req, res) => {
+  const bookId = req.params.id;
 
+  try {
+    // Delete the book from the Books collection
+    await Book.findByIdAndDelete(bookId);
+
+    // Remove the book from the users' book lists
+    const users = await User.updateMany({}, { $pull: { books: bookId } });
+
+    res.json({ message: 'Book deleted successfully' });
+  } catch (error) {
+    console.log('Error deleting book: ', error);
+    res.status(500).json({ error: 'An error occurred while deleting the book' });
+  }
+});
 module.exports = router;
