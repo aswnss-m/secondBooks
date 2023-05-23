@@ -3,11 +3,31 @@ import React, { useState } from 'react';
 import Card from '../Card/Card';
 import './SearchResults.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 function SearchResults({ showFilter, handleBtechChange, handleSemChange, handlePriceChange,btechValue,semValue,priceRange,handleSubmit, allBook}) {
+
   const [showPrice, setShowPrice] = useState(false);
   const [showBtech, setShowBtech] = useState(false);
   const [showSem, setShowSem] = useState(false);
   const navigate = useNavigate();
+  const pushCartItem = (bookId) => {
+    let details = null;
+    if (localStorage.getItem('user')) {
+      details = JSON.parse(localStorage.getItem('user'));
+      axios.put("http://localhost:5000/users/Additem", { bookId: bookId, userId: details.id })
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      alert("Item added to cart")
+    }
+    else {
+      return;
+    }
+
+  };
   return (
     <div className="searchAndFilterContainer">
       {showFilter===true && (
@@ -137,6 +157,9 @@ function SearchResults({ showFilter, handleBtechChange, handleSemChange, handleP
             _id={book._id}
             handleSmallButton={() => {
               navigate(`/buy/${book._id}`);
+            }}
+            handleLargeButton={() => {
+              pushCartItem(book._id)
             }}
           />
         ))}

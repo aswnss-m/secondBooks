@@ -21,7 +21,24 @@ function Shopping() {
   if (!book) {
     return null; // or show a loading indicator
   }
+  const pushCartItem = (bookId) => {
+    let details = null;
+    if (localStorage.getItem('user')) {
+      details = JSON.parse(localStorage.getItem('user'));
+      axios.put("http://localhost:5000/users/Additem", { bookId: bookId, userId: details.id })
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      alert("Item added to cart")
+    }
+    else {
+      return;
+    }
 
+  };
   return (
      <> <PageBreaker title={'Buy'} />
     <div className='shoppingContainer'>
@@ -37,7 +54,9 @@ function Shopping() {
             <button className='buyButton' onClick={()=>{
               window.location.href=`/buy/${id}`;
             }}>Buy</button>
-            <button className='cartButton'>Add to Cart</button>
+            <button className='cartButton'onClick={() => {
+              pushCartItem(id)
+            }} >Add to Cart</button>
       </div>
       </div>
     </div>
