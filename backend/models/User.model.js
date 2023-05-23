@@ -30,7 +30,11 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Book'
     }],
-    address: String
+    
+    address: {
+        type: String,
+        default: null
+    }
 });
 
 
