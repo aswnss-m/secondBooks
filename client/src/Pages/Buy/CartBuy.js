@@ -3,6 +3,7 @@ import { useParams} from 'react-router-dom';
 import "./Buy.css"
 import axios from 'axios';
 function CartBuy() {
+   // eslint-disable-next-line
   const {bookId} = useParams();
   const details = JSON.parse(localStorage.getItem('user'));
   const [address,setAddress] = useState(details.address);

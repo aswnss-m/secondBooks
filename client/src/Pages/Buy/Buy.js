@@ -11,8 +11,8 @@ function Buy() {
   const [book,setBook] = useState({});
   useEffect(()=>{axios.get("http://localhost:5000/books/"+bookId).then((res)=>{
     setBook(res.data);
+    // eslint-disable-next-line
 }).catch((err)=>{console.log(err)});},[]);
-
 
 const handleAddressChange = () => {
   const userId = details.id;
