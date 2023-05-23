@@ -10,6 +10,24 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
   const [recentBooks, setRecentBooks] = useState([]);
   const navigate = useNavigate();
+  
+  const pushCartItem = (bookId) => {
+    let details = null;
+    if (localStorage.getItem('user')) {
+      details = JSON.parse(localStorage.getItem('user'));
+      axios.put("http://localhost:5000/users/Additem", { bookId: bookId, userId: details.id })
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    else {
+      return;
+    }
+
+  };
   useEffect(() => {
     axios.get('http://localhost:5000/books/recent')
       .then(res => {
@@ -40,7 +58,7 @@ function Home() {
             navigate(`/buy/${book._id}`);
           }}
           handleLargeButton={() => {
-            console.log("Large Button Clicked");
+            pushCartItem(book._id)
           }}
           />
         ))}
