@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import Card from '../Card/Card';
 import './SearchResults.css';
+import { useNavigate } from 'react-router-dom';
 function SearchResults({ showFilter, handleBtechChange, handleSemChange, handlePriceChange,btechValue,semValue,priceRange,handleSubmit, allBook}) {
   const [showPrice, setShowPrice] = useState(false);
   const [showBtech, setShowBtech] = useState(false);
   const [showSem, setShowSem] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <div className="searchAndFilterContainer">
       {showFilter===true && (
@@ -134,6 +135,9 @@ function SearchResults({ showFilter, handleBtechChange, handleSemChange, handleP
             semester={book.semester}
             course={book.course}
             _id={book._id}
+            handleSmallButton={() => {
+              navigate(`/buy/${book._id}`);
+            }}
           />
         ))}
       </div>
