@@ -10,9 +10,34 @@ function Profile() {
   const [booksIds,setBooksIds] = useState([]);
   const [books,setBooks] = useState({});
   
-  const handleDelete = () => {
-    console.log("Delete Button Was Clicked")
-  }
+  const handleDelete = async (bookId) => {
+    try {
+      // Delete the book from the Books collection
+      await axios.delete(`http://localhost:5000/books/${bookId}`);
+  
+      // Remove the book from the books state
+      setBooks((prevBooks) => {
+        const updatedBooks = { ...prevBooks };
+        delete updatedBooks[bookId];
+        return updatedBooks;
+      });
+  
+      // Remove the book from the booksIds state in the user's details
+      setBooksIds((prevIds) => prevIds.filter((id) => id !== bookId));
+  
+      // Update the user's book list in the backend
+      const userDetails = JSON.parse(localStorage.getItem('user'));
+      const updatedUserDetails = {
+        ...userDetails,
+        books: userDetails.books.filter((id) => id !== bookId),
+      };
+      localStorage.setItem('user', JSON.stringify(updatedUserDetails));
+  
+      console.log("Book deleted successfully");
+    } catch (error) {
+      console.log("Error deleting book: ", error);
+    }
+  };
   const handleUpdate = ()=>{
     console.log("Update Clicked");
   }
@@ -58,24 +83,28 @@ function Profile() {
       </div>
 <PageBreaker title={'Books You are selling'}/>
 <div className="profileCards">
-  {Object.values(books).map((book, index) => (
-    <Card
-      key={index}
-      image={`http://localhost:5000/books/cover/${book._id}`}
-      title={book.title}
-      price={book.price}
-      coursecode={book.courseCode}
-      semester={book.semester}
-      course={book.course}
-      _id={book._id}
-      smallButton='Delete'
-      smallButtonFunction={handleDelete}
-      largeButton='Update'
-      largeButtonFunction={handleUpdate}
-
-    />
-  ))}
+  {Object.values(books).length > 0 ? (
+    Object.values(books).map((book, index) => (
+      <Card
+        key={index}
+        image={`http://localhost:5000/books/cover/${book._id}`}
+        title={book.title}
+        price={book.price}
+        coursecode={book.courseCode}
+        semester={book.semester}
+        course={book.course}
+        _id={book._id}
+        smallButton="Delete"
+        handleSmallButton={() => handleDelete(book._id)}
+        largeButton="Update"
+        handleLargeButton={handleUpdate}
+      />
+    ))
+  ) : (
+    <h3>None</h3>
+  )}
 </div>
+
     </div>
   )
 }
