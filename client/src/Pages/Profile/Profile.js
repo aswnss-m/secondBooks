@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import PageBreaker from "../../Components/PageBreaker/PageBreaker"
 import "./Profile.css"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Card from "../../Components/Card/Card" 
 import axios from 'axios'
 function Profile() {
@@ -38,8 +38,9 @@ function Profile() {
       console.log("Error deleting book: ", error);
     }
   };
-  const handleUpdate = ()=>{
-    console.log("Update Clicked");
+  const navigate = useNavigate();
+  const handleUpdate = (id)=>{
+    navigate(`/update/${id}`)
   }
   useEffect(() => {
     const details = JSON.parse(localStorage.getItem('user'));
@@ -97,7 +98,7 @@ function Profile() {
         smallButton="Delete"
         handleSmallButton={() => handleDelete(book._id)}
         largeButton="Update"
-        handleLargeButton={handleUpdate}
+        handleLargeButton={() => handleUpdate(book._id)}
       />
     ))
   ) : (

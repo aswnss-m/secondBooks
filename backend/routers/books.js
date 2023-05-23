@@ -22,7 +22,51 @@ router.route('/recent').get((req,res)=>{
   .then(books=>res.json(books))
   .catch(err=>res.status(400).json('Error: '+err));
 })
+// update book 
+router.route('/update/:id').put(upload.single('cover'), async (req, res) => {
+  const bookId = req.params.id;
+  
+  try {
+    // Find the existing book by ID
+    const existingBook = await Book.findById(bookId);
+    if (!existingBook) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+    
+    // Update the book fields that are provided in the request body
+    if (req.body.title) {
+      existingBook.title = req.body.title;
+    }
+    if (req.file) {
+      existingBook.cover = req.file.filename;
+    }
+    if (req.body.semester) {
+      existingBook.semester = req.body.semester;
+    }
+    if (req.body.courseCode) {
+      existingBook.courseCode = req.body.courseCode;
+    }
+    if (req.body.course) {
+      existingBook.course = req.body.course;
+    }
+    if (req.body.author) {
+      existingBook.author = req.body.author;
+    }
+    if (req.body.description) {
+      existingBook.description = req.body.description;
+    }
+    if (req.body.price) {
+      existingBook.price = req.body.price;
+    }
 
+    // Save the updated book
+    const updatedBook = await existingBook.save();
+
+    res.status(200).json({ message: 'Book updated successfully', book: updatedBook });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+});
 // Get specific
 router.route('/:id').get((req, res) => {
   Book.findById(req.params.id)

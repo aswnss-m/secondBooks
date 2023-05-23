@@ -11,6 +11,8 @@ import Shopping from "./Pages/Shopping/Shopping";
 import Buy from "./Pages/Buy/Buy";
 import Cart from "./Pages/CartPage/Cart";
 import CartBuy from "./Pages/Buy/CartBuy";
+import UpdateBook from "./Pages/AddBook/UpdateBook";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token')?true:false);
   useEffect(()=>{
@@ -38,6 +40,7 @@ function App() {
            <Route path={"/buy/:bookId"} element={<Buy />} />
            <Route path={'/profile/cart'} element={<Cart />} />
            <Route path={'/profile/buyCart'} element={<CartBuy />} />
+           <Route path={'/update/:bookId'} element={<UpdateBook />} />
           </>
         ):(
           <>
