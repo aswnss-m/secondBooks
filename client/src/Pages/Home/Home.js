@@ -22,6 +22,7 @@ function Home() {
       .catch((err) => {
         console.log(err);
       });
+      alert("Item added to cart")
     }
     else {
       return;
