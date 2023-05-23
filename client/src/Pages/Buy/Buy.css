@@ -14,7 +14,7 @@
     width: 100%;
     max-width: 700px;
     gap: 1em;
-    min-height: 500px;
+    min-height: 80vh;
 
 }
 .line{
@@ -47,7 +47,13 @@
 .buyItemDetails{
     display: flex;
     align-items: baseline;
+    flex-direction: column;
     width: 100%;
     justify-content: space-between;
     font-weight: bold;
+}
+.buyItemDetails div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

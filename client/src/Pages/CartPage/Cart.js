@@ -12,9 +12,17 @@ function Cart() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem('cart')));
+    const user = JSON.parse(localStorage.getItem('user'))
+    setCart(user.cart);
   }, []);
-
+  const removeItem = (id) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    axios.put("http://localhost:5000/users/removeitem",{userId:user.id,bookId:id}).then((res)=>{
+      localStorage.setItem('user',JSON.stringify(res.data.user));
+      setCart(res.data.user.cart);
+    })
+    alert("Item Removed")
+  }
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -54,12 +62,14 @@ function Cart() {
                 semester={book.semester}
                 course={book.course}
                 _id={book._id}
-                smallButton="Delete"
+                smallButton="Buy"
                 handleSmallButton={() => {
                   navigate(`/buy/${book._id}`);
                 }}
-                largeButton="Update"
-                // handleLargeButton={handleUpdate}
+                largeButton="Remove"
+                handleLargeButton={() => {
+                  removeItem(book._id);
+                }}
               />
             ))
           ) : (
@@ -67,6 +77,9 @@ function Cart() {
           )}
         </div>
       </div>
+        <span className="cartBuy"><button onClick={()=>{
+          window.location.href="/profile/buyCart"
+        }}>Buy All</button></span>
     </>
   );
 }
