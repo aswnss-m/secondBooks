@@ -11,12 +11,9 @@ function About() {
       </div>
       <div className="aboutRight">
        <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ipsum dolorem enim nihil expedita? Necessitatibus, blanditiis molestias! Recusandae nemo nesciunt atque odio incidunt modi, impedit, sequi beatae officia autem sapiente.
-        Iste cum delectus aliquam error illo quidem quos dolores perferendis voluptates iusto, voluptatibus temporibus, beatae laudantium qui necessitatibus. Nostrum, impedit expedita ipsa alias minus ipsum non animi. Corrupti, neque itaque!
-        Minima similique nam inventore culpa nisi aspernatur reiciendis voluptatum delectus id ipsum? Quae tenetur voluptatibus illo deleniti odit nostrum eum suscipit iste hic vitae asperiores vel error, quaerat mollitia temporibus.
-        Corrupti laboriosam iste earum nisi vel temporibus dolore veniam ipsum, libero, atque facilis reprehenderit et? Est, voluptate veniam. Voluptates ad, officiis tenetur ea iusto magni reiciendis assumenda blanditiis non ratione?
-    
-       
+       We are dedicated to providing a seamless platform for buying and selling books. Whether you're a student looking for affordable textbooks or a book enthusiast searching for hidden gems, we've got you covered.
+
+Our mission is to connect book buyers and sellers in a convenient and user-friendly manner. We understand the importance of affordable education and believe that everyone should have access to quality learning resources. That's why we strive to create a community where students can easily find and purchase textbooks at reasonable prices.
        </p>
       </div>
     </div>
