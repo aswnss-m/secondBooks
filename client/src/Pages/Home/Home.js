@@ -5,10 +5,11 @@ import PageBreaker from '../../Components/PageBreaker/PageBreaker';
 import Card from '../../Components/Card/Card';
 import About from '../../Components/About/About';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [recentBooks, setRecentBooks] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios.get('http://localhost:5000/books/recent')
       .then(res => {
@@ -35,6 +36,12 @@ function Home() {
           semester={book.semester}
           course={book.course}
           _id={book._id}
+          handleSmallButton={() => {
+            navigate(`/buy/${book._id}`);
+          }}
+          handleLargeButton={() => {
+            console.log("Large Button Clicked");
+          }}
           />
         ))}
       </div>
