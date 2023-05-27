@@ -82,7 +82,7 @@ const handleAddressChange = () => {
           <div className="buyItemDetails">
             {Object.values(books).length > 0 ? (
             Object.values(books).map((book, index) => (
-            <div>
+            <div key={index}>
               <p>{book.title}</p>
               <p>Price : {book.price}</p>
             </div>
