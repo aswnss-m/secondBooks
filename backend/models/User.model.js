@@ -37,7 +37,11 @@ const userSchema = new mongoose.Schema({
     address: {
         type: String,
         default: null
-    }
+    },
+    orders:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Book'
+    }]
 });
 
 

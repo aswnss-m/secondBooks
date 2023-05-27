@@ -39,6 +39,23 @@ router.route("/updateAddress").put(async (req,res)=>{
     res.status(500).json({message:"Internal server error"});
   }
 })
+router.route("/orderList").put(async (req, res) => {
+  const userId = req.body.userId;
+  const bookId = req.body.bookId;
+  console.log("I am back here");
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    user.orders.push(bookId);
+    await user.save(); // Save the updated user with the new order
+    res.status(200).json({ message: "Order added successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 router.route('/Additem').put(async (req, res) => {
   const userId = req.body.userId;
