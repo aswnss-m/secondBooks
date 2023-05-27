@@ -69,7 +69,7 @@ function Navbar({isLoggedIn, handleLogout}) {
                 <div className="navbarMobileMenu  navbarMobilesLinks">
                     {
                     isLoggedIn === true && (
-                        <Link to={'/'}>
+                        <Link to={'/profile/cart'}>
                             <span className='material-symbols-outlined'>shopping_cart</span>
                         </Link>
                     )
@@ -83,7 +83,7 @@ function Navbar({isLoggedIn, handleLogout}) {
                 }
                     {
                     isLoggedIn ? (
-                        <Link to={'/home'}>Logout</Link>
+                        <Link to={'/home'} onClick={handleLogout}>Logout</Link>
                     ) : (
                         <Link to={'/login'}
                             >Login / Signup</Link>
