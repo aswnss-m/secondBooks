@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
       phoneNumber : user.phoneNumber,
       books : user.books,
       cart : user.cart,
+      address : user.address
     }
     res.status(200).json({ message: 'Login successful', details });
   } catch (error) {
