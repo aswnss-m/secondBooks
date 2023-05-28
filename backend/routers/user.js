@@ -50,11 +50,69 @@ router.route("/orderList").put(async (req, res) => {
     }
     user.orders.push(bookId);
     await user.save(); // Save the updated user with the new order
-    res.status(200).json({ message: "Order added successfully" });
+    
+    // Fetch the updated user data
+    const updatedUser = await User.findById(userId);
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    const { _id, ...userWithoutId } = updatedUser.toObject(); // Exclude _id field
+    res.status(200).json({ message: "Order added successfully", user: { id: _id, ...userWithoutId } });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+  
+router.route('/orderList/:userId')
+  .get(async (req, res) => {
+    const userId = req.params.userId;
+
+    try {
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      const orderList = user.orders;
+      res.status(200).json({ message: 'Order list retrieved successfully', orderList });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  })
+  router.route('/orderList/:userId').delete(async (req, res) => {
+    // Retrieve the user ID and book ID from the request parameters
+    const userId = req.params.userId;
+    const bookId = req.body.bookId;
+  
+    try {
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Convert user.orders array to a list of strings
+      const orderIds = user.orders.map(order => order.toString());
+  
+      // Find the index of the bookId in the orderIds list
+      const bookIndex = orderIds.findIndex(orderId => orderId === bookId);
+      console.log(orderIds);
+      console.log(bookIndex);
+      if (bookIndex === -1) {
+        return res.status(404).json({ message: 'Book not found in the order list' });
+      }
+  
+      // Remove the book from the order list
+      user.orders.splice(bookIndex, 1);
+      await user.save();
+  
+      res.status(200).json({ message: 'Book removed from the order list successfully' });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
+  
 
 
 router.route('/Additem').put(async (req, res) => {

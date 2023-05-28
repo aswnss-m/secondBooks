@@ -36,18 +36,25 @@ function Buy() {
         });
     };
     const handleBuy = () => {
-        const userId = details.id;
-        console.log("I am here");
-        axios.put("http://localhost:5000/users/orderList", {
-            userId: userId,
-            bookId: bookId
-        }).then((response) => {
-            console.log(response);
-            navigate("/profile")
-        }).catch((err) => {
-            console.log(err);
+      const userId = details.id;
+      console.log("I am here");
+      axios
+        .put("http://localhost:5000/users/orderList", {
+          userId: userId,
+          bookId: bookId,
         })
-    }
+        .then((response) => {
+          console.log(response);
+          // Update the user data in localStorage
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          navigate("/profile");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    
+    
     return (
         <div className='buyContainer'>
             <div className="buyPage">
