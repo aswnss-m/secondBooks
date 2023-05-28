@@ -11,7 +11,7 @@ function Login({isRegister}) {
     e.preventDefault()
 
     axios.post('http://localhost:5000/login',{username,password}).then(res=>{
-      console.log(res.status);
+      
       if(res.status === 401){
         alert('Invalid username or password')
       }else if(res.status === 200){
@@ -23,7 +23,7 @@ function Login({isRegister}) {
         alert('Something went wrong')
       }
     }).catch(err=>{
-      console.log(err);
+      
     })
   }
   return (

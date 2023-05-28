@@ -19,10 +19,10 @@ function Register({isLogin}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (password !== confirmPassword) {
-            console.log('Password and Confirm Password do not match.');
+            
             return;
         }
-        console.log(name, email, username, password, phoneNumber);
+        
         axios.post('http://localhost:5000/register', {
             name,
             email,
@@ -31,7 +31,7 @@ function Register({isLogin}) {
             phoneNumber
         }).then(response => {
             if (response.status === 200) {
-                console.log("Sucess : ", response);
+                
                 navigate('/');
                 alert("User created successfully")
             } else if (response.status === 409) {

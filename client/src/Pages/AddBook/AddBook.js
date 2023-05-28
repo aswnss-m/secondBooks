@@ -61,11 +61,11 @@ function SellBook() {
       });
 
       // Show a success message or redirect to a different page
-      console.log(response.data);
-      console.log(response.data.bookId);
+      
+      
       axios.put('http://localhost:5000/users/addbook', { bookId: response.data.bookId, userId: seller.id }).then((res) => {
         window.location = '/profile';
-      }).catch((err) => console.log(err));
+      }).catch((err) => 
     } catch (error) {
       setError('An error occurred. Please try again.');
       console.error(error);

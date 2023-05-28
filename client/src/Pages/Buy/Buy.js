@@ -16,13 +16,13 @@ function Buy() {
         axios.get("http://localhost:5000/books/" + bookId).then((res) => {
             setBook(res.data);
         }).catch((err) => {
-            console.log(err)
+            
         });
     }, [bookId]);
 
     const handleAddressChange = () => {
         const userId = details.id;
-        console.log(userId, inputAddress);
+        
         axios.put("http://localhost:5000/users/updateAddress", {
             address: inputAddress,
             userId
@@ -30,27 +30,27 @@ function Buy() {
             localStorage.setItem('user', JSON.stringify(response.data.user));
             setAddress(response.data.user.address);
             setAddrAvailable(true);
-            console.log("Address updated successfully");
+            
         }).catch((error) => {
-            console.log("Error updating address: ", error);
+            
         });
     };
     const handleBuy = () => {
       const userId = details.id;
-      console.log("I am here");
+      
       axios
         .put("http://localhost:5000/users/orderList", {
           userId: userId,
           bookId: bookId,
         })
         .then((response) => {
-          console.log(response);
+          
           // Update the user data in localStorage
           localStorage.setItem("user", JSON.stringify(response.data.user));
           navigate("/profile");
         })
         .catch((err) => {
-          console.log(err);
+          
         });
     };
     

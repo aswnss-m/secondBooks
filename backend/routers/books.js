@@ -82,7 +82,7 @@ router.post('/search', async (req, res) => {
 
     // Extract filter values from query parameters
     const { title, courseCode, semester, minPrice, maxPrice, course } = req.body;
-    console.log(req.body);
+    
     if (title) {
       filters.title = { $regex: title, $options: 'i' }; // Case-insensitive regex matching
     }
@@ -117,7 +117,7 @@ router.post('/search', async (req, res) => {
 // Add Book
 router.route('/add').post(upload.single('cover'), (req, res) => {
   const { title, semester, courseCode, course, author, description, price, seller } = req.body;
-  console.log(req.body);
+  
   const newBook = new Book({  
     title,
     cover: {
@@ -135,7 +135,7 @@ router.route('/add').post(upload.single('cover'), (req, res) => {
 
   newBook.save()
     .then((book) => {
-      console.log(book._id);
+      
       res.json({ message: 'Book added successfully', bookId: book._id })})
     .catch((err) => res.status(400).json({ message: 'Error: ' + err }));
 });
@@ -198,7 +198,7 @@ router.route('/:id').delete(async (req, res) => {
 
     res.json({ message: 'Book deleted successfully' });
   } catch (error) {
-    console.log('Error deleting book: ', error);
+    
     res.status(500).json({ error: 'An error occurred while deleting the book' });
   }
 });

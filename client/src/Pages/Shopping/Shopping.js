@@ -7,14 +7,14 @@ import './Shopping.css';
 function Shopping() {
   const [book, setBook] = useState(null);
   const {id}  = useParams();
-  console.log(id);
+  
   useEffect(() => {
     axios.get(`http://localhost:5000/books/details/${id}`)
       .then(res => {
         setBook(res.data);
       })
       .catch(err => {
-        console.log("Error: ", err);
+        
       });
   }, [id]);
 
@@ -30,7 +30,7 @@ function Shopping() {
         localStorage.setItem('user', JSON.stringify(res.data.user));
       })
       .catch((err) => {
-        console.log(err);
+        
       });
       alert("Item added to cart")
     }

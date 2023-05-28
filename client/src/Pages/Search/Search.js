@@ -21,7 +21,7 @@ useEffect(() => {
       setAllBooks(res.data);
     })
     .catch(err => {
-      console.log("Error: ", err);
+      
     });
 },[]);
 
@@ -46,7 +46,7 @@ useEffect(() => {
     };
 
     const handleFilterShow = () => {
-        console.log(!showFilter);
+        
         setShowFilter(!showFilter);
     };
     const handleSubmit = () => {
@@ -60,11 +60,11 @@ useEffect(() => {
         }
         axios.post('http://localhost:5000/books/search', filter)
         .then(res => {
-          console.log(res.data);
+          
           setAllBooks(res.data);
         })
         .catch(err => {
-          console.log(err);
+          
         });
     }
     return (

@@ -19,7 +19,7 @@ function App() {
     setIsLoggedIn(localStorage.getItem('token')?true:false);
   },[isLoggedIn])
   const loggingOut = () => {
-    console.log("Logging out");
+    
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setIsLoggedIn(false);

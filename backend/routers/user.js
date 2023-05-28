@@ -42,7 +42,7 @@ router.route("/updateAddress").put(async (req,res)=>{
 router.route("/orderList").put(async (req, res) => {
   const userId = req.body.userId;
   const bookId = req.body.bookId;
-  console.log("I am back here");
+  
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -96,8 +96,8 @@ router.route('/orderList/:userId')
   
       // Find the index of the bookId in the orderIds list
       const bookIndex = orderIds.findIndex(orderId => orderId === bookId);
-      console.log(orderIds);
-      console.log(bookIndex);
+      
+      
       if (bookIndex === -1) {
         return res.status(404).json({ message: 'Book not found in the order list' });
       }
@@ -118,7 +118,7 @@ router.route('/orderList/:userId')
 router.route('/Additem').put(async (req, res) => {
   const userId = req.body.userId;
   const bookId = req.body.bookId;
-  console.log(userId, bookId);
+  
   try {
     const user = await User.findById(userId);
     if (!user) {

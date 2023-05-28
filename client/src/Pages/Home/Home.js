@@ -20,7 +20,7 @@ function Home() {
         localStorage.setItem('user', JSON.stringify(res.data.user));
       })
       .catch((err) => {
-        console.log(err);
+        
       });
       alert("Item added to cart")
     }
@@ -36,7 +36,7 @@ function Home() {
         setRecentBooks(books);
       })
       .catch(err => {
-        console.log("Error: ", err);
+        
       });
   });
 

@@ -34,9 +34,9 @@ function Profile() {
             };
             localStorage.setItem('user', JSON.stringify(updatedUserDetails));
 
-            console.log("Book deleted successfully");
+            
         } catch (error) {
-            console.log("Error deleting book: ", error);
+            
         }
     };
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ function Profile() {
                 });
                 setBooks(fetchedBooks);
             } catch (error) {
-                console.log("Error: ", error);
+                
             }
         };
 
@@ -100,7 +100,7 @@ function Profile() {
         // If the request is successful, update the order state by removing the book
         if (response.status === 200) {
           setOrder((prevOrder) => prevOrder.filter((book) => book._id !== bookId));
-          console.log("Book removed from the order list successfully");
+          
         }
       } catch (error) {
         console.error("Error removing book from the order list: ", error);

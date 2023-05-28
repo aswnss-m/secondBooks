@@ -39,7 +39,7 @@ function Cart() {
           setBooks(fetchedBooks);
         }
       } catch (error) {
-        console.log('Error: ', error);
+        
       }
     };
 

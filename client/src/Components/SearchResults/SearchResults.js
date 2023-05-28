@@ -19,7 +19,7 @@ function SearchResults({ showFilter, handleBtechChange, handleSemChange, handleP
         localStorage.setItem('user', JSON.stringify(res.data.user));
       })
       .catch((err) => {
-        console.log(err);
+        
       });
       alert("Item added to cart")
     }

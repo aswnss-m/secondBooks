@@ -32,7 +32,7 @@ function CartBuy() {
           setBooks(fetchedBooks);
         }
       } catch (error) {
-        console.log('Error: ', error);
+        
       }
     };
 
@@ -40,17 +40,17 @@ function CartBuy() {
   }, [cart]);
 const handleAddressChange = () => {
   const userId = details.id;
-  console.log(userId, inputAddress);
+  
   axios
     .put("http://localhost:5000/users/updateAddress", { address:inputAddress, userId })
     .then((response) => {
       localStorage.setItem('user',JSON.stringify(response.data.user));
       setAddress(response.data.user.address);
       setAddrAvailable(true);
-      console.log("Address updated successfully");
+      
     })
     .catch((error) => {
-      console.log("Error updating address: ", error);
+      
     });
 };
 

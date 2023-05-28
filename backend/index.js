@@ -14,7 +14,7 @@ const uri = process.env.ATLAS_URI;
 mongoose.connect(uri);
 const connection = mongoose.connection;
 connection.once('open',()=>{
-    console.log("Mongoose Connection established");
+    
 });
 
 const loginRouter = require('./routers/login');
@@ -28,5 +28,5 @@ app.use('/register',registerUser);
 app.use('/users',userRouter);
 
 app.listen(port,()=>{
-    console.log(`Server is running at ${port}`);
+    
 });
