@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import HandleLogin from './HandleLogin'
 import { useState } from 'react'
 import axios from 'axios'
 import "./Form.css"
